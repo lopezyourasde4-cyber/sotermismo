@@ -63,7 +63,7 @@ export default function WhatsAppChat() {
 
   const getWhatsAppURL = () => {
     const lastMsg = messages[messages.length - 1];
-    let customText = "Hola Maestra Aura, vengo de la app de Aura Mystica y me gustaría una consulta de sanación espiritual.";
+    let customText = "Hola Maestra Aura, vengo de la app de Templo de Sanación y me gustaría una consulta de sanación espiritual.";
     if (messages.length > 1) {
       // Find the last user message to prefill WhatsApp
       const userMsgs = messages.filter((m) => m.sender === 'user');
@@ -103,7 +103,7 @@ export default function WhatsAppChat() {
       {/* Message Body Canvas Container */}
       <div className="flex-1 bg-neutral-950 p-4 overflow-y-auto space-y-3 flex flex-col scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
         <div className="bg-[#141414] border border-neutral-850 px-3 py-2 rounded text-center text-[10px] text-[#ffb4a8] max-w-xs mx-auto mb-2 italic">
-          🔒 Los mensajes están protegidos en Aura Mystica. Tu consulta espiritual es estrictamente confidencial.
+          🔒 Los mensajes están protegidos en Templo de Sanación. Tu consulta espiritual es estrictamente confidencial.
         </div>
 
         {messages.map((msg, index) => {

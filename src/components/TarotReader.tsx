@@ -58,7 +58,7 @@ export default function TarotReader() {
       <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-[#af8d11]/5 blur-3xl pointer-events-none" />
 
       <div className="text-center mb-6">
-        <span className="text-[#af8d11] text-xs font-bold tracking-widest uppercase block mb-1">El Oráculo de Aura Mystica</span>
+        <span className="text-[#af8d11] text-xs font-bold tracking-widest uppercase block mb-1">El Oráculo de Templo de Sanación</span>
         <h3 className="font-serif text-2xl md:text-3xl text-white tracking-tight">Lectura Virtual de las 3 Cartas</h3>
         <p className="text-gray-400 text-sm max-w-lg mx-auto mt-2">
           Concentra tu mente en tu mayor duda sobre el amor, el destino o tu energía. El tarot guiará tu camino.
@@ -221,7 +221,7 @@ export default function TarotReader() {
                 </span>
                 <a
                   href={whatsappLink(
-                    `Hola Maestra Aura, acabo de realizar la lectura de 3 cartas en Aura Mystica. Me salieron las cartas: Pasado: ${selectedCards[0]?.name}, Presente: ${selectedCards[1]?.name}, Futuro: ${selectedCards[2]?.name}. Me gustaría recibir mi diagnóstico completo y resolver mis preguntas sobre el amor.`
+                    `Hola Maestra Aura, acabo de realizar la lectura de 3 cartas en Templo de Sanación. Me salieron las cartas: Pasado: ${selectedCards[0]?.name}, Presente: ${selectedCards[1]?.name}, Futuro: ${selectedCards[2]?.name}. Me gustaría recibir mi diagnóstico completo y resolver mis preguntas sobre el amor.`
                   )}
                   target="_blank"
                   rel="noopener noreferrer"

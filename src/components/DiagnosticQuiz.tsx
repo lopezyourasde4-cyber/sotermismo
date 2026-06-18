@@ -70,7 +70,7 @@ export default function DiagnosticQuiz() {
   const diagnosis = getDiagnosis();
 
   const getWhatsAppMessage = () => {
-    return `Hola Maestra Aura, acabo de realizar mi Consulta de Diagnóstico Energético en Aura Mystica. Obtuve un resultado de ${auraHarmonyPercent}% de Armonía Áurica (${diagnosis.title}). Me gustaría recibir ayuda directa sobre mi caso para sanar mi energía y superar mis bloqueos.`;
+    return `Hola Maestra Aura, acabo de realizar mi Consulta de Diagnóstico Energético en Templo de Sanación. Obtuve un resultado de ${auraHarmonyPercent}% de Armonía Áurica (${diagnosis.title}). Me gustaría recibir ayuda directa sobre mi caso para sanar mi energía y superar mis bloqueos.`;
   };
 
   return (

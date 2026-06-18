@@ -79,7 +79,7 @@ export default function TestimonialsSection() {
             <span className="font-bold flex items-center justify-center gap-1.5">
               <Check className="w-4 h-4 text-emerald-400" /> ¡Tu testimonio se ha publicado con luz!
             </span>
-            Gracias por compartir tu sagrado testimonio con la hermandad de Aura Mystica.
+            Gracias por compartir tu sagrado testimonio con la hermandad de Templo de Sanación.
           </motion.div>
         )}
       </AnimatePresence>

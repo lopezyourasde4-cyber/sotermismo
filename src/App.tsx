@@ -23,6 +23,7 @@ export default function App() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [activeVideoTitle, setActiveVideoTitle] = useState('');
   const [isVideoTranscript, setIsVideoTranscript] = useState('');
+  const [isFloatingVideoOpen, setIsFloatingVideoOpen] = useState(true);
   
   // Floating simulated WhatsApp toggle
   const [isFloatChatOpen, setIsFloatChatOpen] = useState(false);
@@ -46,7 +47,7 @@ export default function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setVideoStartIndex((prev) => (prev + 3 >= allVideoData.length ? 0 : prev + 3));
+      setVideoStartIndex((prev) => (prev + 1 >= allVideoData.length ? 0 : prev + 1));
     }, 300000);
     return () => clearInterval(timer);
   }, []);
@@ -82,7 +83,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('hero-section')}>
             <span className="font-serif text-lg md:text-xl font-bold tracking-widest text-[#e9c349] hover:text-white transition-colors">
-              AURA MYSTICA
+              TEMPLO DE SANACIÓN
             </span>
           </div>
 
@@ -118,12 +119,12 @@ export default function App() {
         <div className="absolute inset-0 z-0">
           <img 
             src="/src/assets/images/background_healer_1781751566563.jpg" 
-            alt="Santuario de Sanidad de Aura Mystica" 
+            alt="Santuario de Sanidad Espiritual" 
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover opacity-35 filter brightness-[0.4]"
+            className="w-full h-full object-cover opacity-50 filter brightness-[0.35] saturate-[1.3] sepia-[0.1]"
           />
           {/* Subtle custom background overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/10 via-[#050505]/80 to-[#050505]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a0a0a]/20 via-[#0a0505]/70 to-[#050505]/95" />
         </div>
 
         {/* Soft background candle warmth effects */}
@@ -168,8 +169,8 @@ export default function App() {
           <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#af8d11] to-transparent mx-auto mt-3" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {allVideoData.slice(videoStartIndex, videoStartIndex + 3).map((video) => (
+        <div className="grid grid-cols-1 max-w-3xl mx-auto gap-6">
+          {allVideoData.slice(videoStartIndex, videoStartIndex + 1).map((video) => (
             <div 
               key={video.id}
               className="bg-[#0a0a0a] border border-[#ffb4a8]/10 hover:border-[#af8d11]/40 rounded shadow-xl overflow-hidden group transition-all duration-350 hover:-translate-y-1"
@@ -179,7 +180,7 @@ export default function App() {
                 controls
                 muted
                 playsInline
-                className="w-full aspect-[4/3] object-cover"
+                className="w-full aspect-video object-cover"
               />
               <div className="p-4">
                 <h4 className="text-white font-serif text-sm font-semibold tracking-wide">{video.title}</h4>
@@ -188,12 +189,12 @@ export default function App() {
           ))}
         </div>
         <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: Math.ceil(allVideoData.length / 3) }, (_, i) => (
+          {Array.from({ length: allVideoData.length }, (_, i) => (
             <button
               key={i}
-              onClick={() => setVideoStartIndex(i * 3)}
+              onClick={() => setVideoStartIndex(i)}
               className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                videoStartIndex === i * 3 ? 'bg-[#e9c349] w-6' : 'bg-[#af8d11]/40 hover:bg-[#af8d11]/60'
+                videoStartIndex === i ? 'bg-[#e9c349] w-6' : 'bg-[#af8d11]/40 hover:bg-[#af8d11]/60'
               }`}
             />
           ))}
@@ -455,6 +456,59 @@ export default function App() {
         </div>
       </section>
 
+      {/* Floating video vignette - bottom right */}
+      {isFloatingVideoOpen && (
+        <div className="fixed bottom-24 right-6 z-30 group">
+          <div className="relative w-36 md:w-48 rounded-xl overflow-hidden shadow-2xl border border-[#af8d11]/30 cursor-pointer hover:scale-105 transition-transform duration-300"
+            onClick={() => {
+              const vid = document.getElementById('floating-vid') as HTMLVideoElement;
+              if (vid) vid.muted = false;
+              setIsFloatingVideoOpen(false);
+            }}
+          >
+            <video
+              id="floating-vid"
+              src="/src/assets/videos/Curandera.mp4"
+              muted
+              autoPlay
+              loop
+              playsInline
+              className="w-full aspect-[4/3] object-cover"
+            />
+            <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-white text-[10px] font-bold uppercase tracking-wider bg-black/60 px-2 py-1 rounded">Click para ver</span>
+            </div>
+          </div>
+          <button
+            onClick={(e) => { e.stopPropagation(); setIsFloatingVideoOpen(false); }}
+            className="absolute -top-2 -right-2 w-5 h-5 bg-black/80 border border-[#af8d11]/40 rounded-full flex items-center justify-center hover:bg-black transition-colors"
+          >
+            <X className="w-3 h-3 text-[#af8d11]" />
+          </button>
+        </div>
+      )}
+
+      {/* Expanded video modal */}
+      {!isFloatingVideoOpen && (
+        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4" onClick={() => setIsFloatingVideoOpen(true)}>
+          <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+            <video
+              src="/src/assets/videos/Curandera.mp4"
+              controls
+              autoPlay
+              playsInline
+              className="w-full rounded-lg shadow-2xl"
+            />
+            <button
+              onClick={() => setIsFloatingVideoOpen(true)}
+              className="absolute -top-10 right-0 text-white/80 hover:text-white text-sm"
+            >
+              Cerrar ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* 11. Custom Real-Time WhatsApp floating assistant widget wrapper on bottom right */}
       <div id="floating-whatsapp-trigger" className="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3">
         
@@ -497,10 +551,10 @@ export default function App() {
 
       {/* 12. App Footer */}
       <footer id="app-footer" className="mt-20 border-t border-[#af8d11]/10 pt-12 px-4 text-center space-y-6">
-        <h4 className="font-serif text-xl tracking-widest text-[#e9c349]">AURA MYSTICA</h4>
+        <h4 className="font-serif text-xl tracking-widest text-[#e9c349]">TEMPLO DE SANACIÓN</h4>
 
         <div className="flex flex-wrap items-center justify-center gap-6 text-[10px] text-gray-500 font-bold uppercase tracking-wider">
-          <button onClick={() => alert("Aviso de Privacidad: Aura Mystica protege los datos de sus clientes con confidencialidad absoluta.")} className="hover:text-white transition-colors cursor-pointer">
+          <button onClick={() => alert("Aviso de Privacidad: Templo de Sanación protege los datos de sus clientes con confidencialidad absoluta.")} className="hover:text-white transition-colors cursor-pointer">
             Aviso de Privacidad
           </button>
           <span>•</span>
@@ -518,7 +572,7 @@ export default function App() {
         </div>
 
         <p className="text-gray-600 text-xs font-serif italic">
-          © 2026 Aura Mystica • Santuario de Sanación Espiritual. Todos los derechos reservados.
+          © 2026 Templo de Sanación • Santuario de Sanación Espiritual. Todos los derechos reservados.
         </p>
 
         {/* Dynamic credential accreditation badge */}
