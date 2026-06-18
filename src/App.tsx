@@ -171,46 +171,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* 3. Testimonios de Luz Teaser/Video Section */}
-      <section id="teaser-video-section" className="py-20 px-4 md:px-8 max-w-7xl mx-auto border-b border-[#af8d11]/5">
-        <div className="text-center mb-12">
-          <span className="text-[#af8d11] text-xs font-bold tracking-widest uppercase block mb-1">Almas que han recuperado su camino</span>
-          <h2 className="font-serif text-3xl text-white tracking-tight">Nuestros pacientes dan testimonios de la efectividad de nuestros guías espirituales</h2>
-          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#af8d11] to-transparent mx-auto mt-3" />
-        </div>
-
-        <div className="grid grid-cols-1 max-w-3xl mx-auto gap-6">
-          {allVideoData.slice(videoStartIndex, videoStartIndex + 1).map((video) => (
-            <div 
-              key={video.id}
-              className="bg-[#0a0a0a] border border-[#ffb4a8]/10 hover:border-[#af8d11]/40 rounded shadow-xl overflow-hidden group transition-all duration-350 hover:-translate-y-1"
-            >
-              <video 
-                src={video.src}
-                controls
-                muted
-                playsInline
-                className="w-full aspect-video object-cover"
-              />
-              <div className="p-4">
-                <h4 className="text-white font-serif text-sm font-semibold tracking-wide">{video.title}</h4>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: allVideoData.length }, (_, i) => (
-            <button
-              key={i}
-              onClick={() => setVideoStartIndex(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                videoStartIndex === i ? 'bg-[#e9c349] w-6' : 'bg-[#af8d11]/40 hover:bg-[#af8d11]/60'
-              }`}
-            />
-          ))}
-        </div>
-      </section>
-
       {/* 4. Reconecta con tu Energía segment */}
       <section id="energy-reconnection" className="py-24 px-4 bg-black/30 border-b border-[#af8d11]/5">
         <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -375,7 +335,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 8. **NEW MASTERPIECE WORKSPACE SPECIALTY**: Interactive Sacred Tab Center */}
+      {/* 7. Interactive Sacred Tab Center */}
       <section id="interactive-tab-section" className="py-24 px-4 md:px-8 bg-black/40 border-b border-[#af8d11]/5">
         <div className="max-w-5xl mx-auto space-y-10">
           
@@ -430,6 +390,46 @@ export default function App() {
             {activeInteractiveTab === 'altar' && <VirtualAltar />}
           </div>
 
+        </div>
+      </section>
+
+      {/* 8. Video Testimonials Section */}
+      <section id="teaser-video-section" className="py-20 px-4 md:px-8 max-w-7xl mx-auto border-b border-[#af8d11]/5">
+        <div className="text-center mb-12">
+          <span className="text-[#af8d11] text-xs font-bold tracking-widest uppercase block mb-1">Almas que han recuperado su camino</span>
+          <h2 className="font-serif text-3xl text-white tracking-tight">Nuestros pacientes dan testimonios de la efectividad de nuestros guías espirituales</h2>
+          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#af8d11] to-transparent mx-auto mt-3" />
+        </div>
+
+        <div className="grid grid-cols-1 max-w-3xl mx-auto gap-6">
+          {allVideoData.slice(videoStartIndex, videoStartIndex + 1).map((video) => (
+            <div 
+              key={video.id}
+              className="bg-[#0a0a0a] border border-[#ffb4a8]/10 hover:border-[#af8d11]/40 rounded shadow-xl overflow-hidden group transition-all duration-350 hover:-translate-y-1"
+            >
+              <video 
+                src={video.src}
+                controls
+                muted
+                playsInline
+                className="w-full aspect-video object-cover"
+              />
+              <div className="p-4">
+                <h4 className="text-white font-serif text-sm font-semibold tracking-wide">{video.title}</h4>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: allVideoData.length }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setVideoStartIndex(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                videoStartIndex === i ? 'bg-[#e9c349] w-6' : 'bg-[#af8d11]/40 hover:bg-[#af8d11]/60'
+              }`}
+            />
+          ))}
         </div>
       </section>
 
@@ -522,7 +522,7 @@ export default function App() {
       )}
 
       {/* 11. Custom Real-Time WhatsApp floating assistant widget wrapper on bottom right */}
-      <div id="floating-whatsapp-trigger" className="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3">
+      <div id="floating-whatsapp-trigger" className="fixed top-[15vh] right-6 z-40 flex flex-col items-end space-y-3">
         
         {/* Immersive chat bubble toggled online */}
         <AnimatePresence>
