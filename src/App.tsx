@@ -47,7 +47,7 @@ export default function App() {
   useEffect(() => {
     const timer = setInterval(() => {
       setVideoStartIndex((prev) => (prev + 3 >= allVideoData.length ? 0 : prev + 3));
-    }, 8000);
+    }, 300000);
     return () => clearInterval(timer);
   }, []);
 
