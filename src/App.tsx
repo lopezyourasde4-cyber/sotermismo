@@ -24,6 +24,8 @@ export default function App() {
   const [activeVideoTitle, setActiveVideoTitle] = useState('');
   const [isVideoTranscript, setIsVideoTranscript] = useState('');
   const [isFloatingVideoOpen, setIsFloatingVideoOpen] = useState(true);
+  const floatingVideos = ["/src/assets/videos/Curandera.mp4", "/src/assets/videos/curandera2.mp4"];
+  const [floatingVideoIdx, setFloatingVideoIdx] = useState(0);
   
   // Floating simulated WhatsApp toggle
   const [isFloatChatOpen, setIsFloatChatOpen] = useState(false);
@@ -49,6 +51,13 @@ export default function App() {
     const timer = setInterval(() => {
       setVideoStartIndex((prev) => (prev + 1 >= allVideoData.length ? 0 : prev + 1));
     }, 300000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFloatingVideoIdx((prev) => (prev + 1 >= floatingVideos.length ? 0 : prev + 1));
+    }, 15000);
     return () => clearInterval(timer);
   }, []);
 
@@ -468,7 +477,8 @@ export default function App() {
           >
             <video
               id="floating-vid"
-              src="/src/assets/videos/Curandera.mp4"
+              key={floatingVideoIdx}
+              src={floatingVideos[floatingVideoIdx]}
               muted
               autoPlay
               loop
@@ -493,7 +503,8 @@ export default function App() {
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4" onClick={() => setIsFloatingVideoOpen(true)}>
           <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <video
-              src="/src/assets/videos/Curandera.mp4"
+              key={floatingVideoIdx}
+              src={floatingVideos[floatingVideoIdx]}
               controls
               autoPlay
               playsInline
