@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@100..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom palette matching the Sacred Reunion Design System and Brand guidelines */
+  --color-obsidian: #050505;
+  --color-surface-dim: #0a0a0a;
+  --color-surface-bright: #141414;
+  --color-rose-crimson: #8b0000;
+  --color-crimson-light: #ffb4a8;
+  --color-muted-gold: #af8d11;
+  --color-muted-gold-light: #e9c349;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}

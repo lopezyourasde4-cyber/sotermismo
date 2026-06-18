@@ -1,0 +1,6 @@
+{
+  "name": "Aura Mystica",
+  "description": "Santuario de sanación espiritual, alineación de chakras, amarres y retornos de pareja.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
