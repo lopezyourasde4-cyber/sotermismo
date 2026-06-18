@@ -24,6 +24,7 @@ export default function App() {
   const [activeVideoTitle, setActiveVideoTitle] = useState('');
   const [isVideoTranscript, setIsVideoTranscript] = useState('');
   const [isFloatingVideoOpen, setIsFloatingVideoOpen] = useState(true);
+  const [videoDismissed, setVideoDismissed] = useState(false);
   const floatingVideos = ["/src/assets/videos/Curandera.mp4", "/src/assets/videos/curandera2.mp4"];
   const [floatingVideoIdx, setFloatingVideoIdx] = useState(0);
   
@@ -466,7 +467,7 @@ export default function App() {
       </section>
 
       {/* Floating video vignette - bottom right */}
-      {isFloatingVideoOpen && (
+      {!videoDismissed && isFloatingVideoOpen && (
         <div className="fixed bottom-24 right-6 z-30 group">
           <div className="relative w-36 md:w-48 rounded-xl overflow-hidden shadow-2xl border border-[#af8d11]/30 cursor-pointer hover:scale-105 transition-transform duration-300"
             onClick={() => {
@@ -490,7 +491,7 @@ export default function App() {
             </div>
           </div>
           <button
-            onClick={(e) => { e.stopPropagation(); setIsFloatingVideoOpen(false); }}
+            onClick={(e) => { e.stopPropagation(); setVideoDismissed(true); }}
             className="absolute -top-2 -right-2 w-5 h-5 bg-black/80 border border-[#af8d11]/40 rounded-full flex items-center justify-center hover:bg-black transition-colors"
           >
             <X className="w-3 h-3 text-[#af8d11]" />
@@ -499,7 +500,7 @@ export default function App() {
       )}
 
       {/* Expanded video modal */}
-      {!isFloatingVideoOpen && (
+      {!videoDismissed && !isFloatingVideoOpen && (
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4" onClick={() => setIsFloatingVideoOpen(true)}>
           <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <video
